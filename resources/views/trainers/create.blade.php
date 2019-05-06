@@ -20,10 +20,18 @@
     </div>
 
     <div class="form-group">
+      <label for="">Descripción</label>
+      <!-- Y el input NECESITA UN NOMBRE  para IDENTIFICARSE -->
+      <input type="text" name="description" class="form-control">
+      </div>
+
+    <div class="form-group">
       <label for="">Avatar</label>
       <!-- Y el input NECESITA UN NOMBRE  para IDENTIFICARSE -->
       <input type="file" name="avatar">
       </div>
+
+
 
     <button type="submit" class="btn btn-primary">Guardar</button>
 
