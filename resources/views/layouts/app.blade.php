@@ -9,7 +9,7 @@
      <body>
 
 <nav class="navbar navbar-dark bg-primary">  
-<a href="{{url('trainers/create')}}" class="navbar-brand"> Pruebas con Laravel 5.6</a>
+<a href="{{url('/')}}" class="navbar-brand"> Pruebas con Laravel 5.6</a>
 
 </nav>
 
