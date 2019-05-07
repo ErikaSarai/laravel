@@ -78,9 +78,17 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Trainer $trainer)
     {
-        //
+        // return 'Tengo que retornar el recurso con su nombre ' .$id;
+        
+        // Elementos de eloquent para almacenar a nuestro entrenador y llevarlo a la vista de show. 
+        // Necesita su $id
+        // $trainer = Trainer::find($id);
+        // return $trainer;
+
+        // Compact nos sirve para compartir información con nuestras vistas
+        return view ('trainers.show', compact('trainer'));
     }
 
     /**

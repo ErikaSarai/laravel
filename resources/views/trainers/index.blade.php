@@ -4,21 +4,22 @@
 
 @section('content')
 
+<div style="margin-top:30px;" class="text-center">
 <h3>Listado de Trainers</h3>
 <p>Esto no es un listado de trainers, en realidad es un listado de mejores amigos, profesores y familia. Bienvenidos a mi Blog</p>
-
+</div>
 <!-- Esto sirve para ejecutar lo que le controlador esta mandando y colocar en un arreglo todos los registros -->
 <!-- ($trainers as $trainer) Con esto dice que cada trainers que encuentre le ponga trainer -->
 <div class="row">
 @foreach($trainers as $trainer)
 <!-- Con esto accedemos a la Variable y al id y el nombre del registro -->
 <div class="col-sm">
-<div class="card" style="width: 18rem;">
- <img src="images/{{$trainer->avatar}}" class="card-img-top" alt="" height="250px">
+<div class="card text-center" style="width: 18rem; margin-top:20px;">
+ <img style="margin-top:20px;" src="images/{{$trainer->avatar}}" class="card-img-top" alt="" height="250px">
   <div class="card-body">
     <h5 class="card-title">{{$trainer->id}} {{$trainer->name}}</h5>
     <p class="card-text">{{$trainer->description}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a href="/trainers/{{$trainer->id}}" class="btn btn-primary">Ver más</a>
   </div>
 </div>
 </div>
