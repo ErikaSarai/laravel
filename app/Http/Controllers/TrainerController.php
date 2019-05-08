@@ -61,9 +61,9 @@ class TrainerController extends Controller
             $file->move(public_path().'/images/',$name);
     
         }
-
         $trainer = new Trainer();
         $trainer->name = $request->input('name');
+        $trainer->slug = $request->input('name');
         $trainer->description = $request->input('description');
         $trainer->avatar = $name;
         $trainer->save();
@@ -78,6 +78,9 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    // show(Trainer $trainer) Este es el método implicit binding se coloca el modelo y la varibale que se creo
+    // el método de slug  show($slug)
     public function show(Trainer $trainer)
     {
         // return 'Tengo que retornar el recurso con su nombre ' .$id;
@@ -85,6 +88,8 @@ class TrainerController extends Controller
         // Elementos de eloquent para almacenar a nuestro entrenador y llevarlo a la vista de show. 
         // Necesita su $id
         // $trainer = Trainer::find($id);
+       
+        // $trainer = Trainer::where('slug', '=' , $slug)->firstOrFail();
         // return $trainer;
 
         // Compact nos sirve para compartir información con nuestras vistas
@@ -97,9 +102,11 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Trainer $trainer)
     {
-        //
+
+        return view ('trainers.edit', compact('trainer'));
+        // return $trainer;
     }
 
     /**
@@ -109,9 +116,26 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trainer $trainer)
     {
-        //
+        // fill es para actualizar los datos que este recibiendo
+        // except me dice que va a usar todo menos lo que tiene en los parentesis.
+        // $trainer->fill($request->all());
+        $trainer->fill($request->except('avatar'));
+        if($request->hasFile('avatar')){
+
+            $file = $request->file('avatar');
+            $name = time().$file->getClientOriginalName();
+            // Esto es para que se pueda actualizar la foto en nuestra base de datos
+            $trainer->avatar = $name;
+            $file->move(public_path().'/images/',$name);
+    
+        }
+        $trainer->save();
+        return view('trainers.update');
+
+        // return $request;
+        // return $trainer;    
     }
 
     /**

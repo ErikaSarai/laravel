@@ -29,12 +29,12 @@
       <label for="">Avatar</label>
       <!-- Y el input NECESITA UN NOMBRE  para IDENTIFICARSE -->
       <input type="file" name="avatar">
+
       </div>
 
 
-
     <button type="submit" class="btn btn-primary">Guardar</button>
-
+    <a href="/trainers" class="btn btn-primary">Ver lista de trainers</a>
 
  </form>
 
