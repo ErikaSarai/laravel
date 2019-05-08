@@ -122,6 +122,7 @@ class TrainerController extends Controller
         // except me dice que va a usar todo menos lo que tiene en los parentesis.
         // $trainer->fill($request->all());
         $trainer->fill($request->except('avatar'));
+        $trainer->slug = $request->input('name');
         if($request->hasFile('avatar')){
 
             $file = $request->file('avatar');

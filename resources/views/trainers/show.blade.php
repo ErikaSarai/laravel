@@ -9,6 +9,6 @@
 <div class="text-center">
     <h4>{{$trainer->name}}</h4>
 <p> {{$trainer->description}} </p>
-<a href="/trainers/{{$trainer->slug}}/edit" class="btn btn-primary">Editar</a>
+<a href="/trainers/{{$trainer->slug}}/edit" class="btn btn-primary">Actualizar</a>
 </div>
 @endsection
