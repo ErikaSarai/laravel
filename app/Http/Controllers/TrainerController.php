@@ -5,10 +5,11 @@ use App\Http\Controllers\Controller;
 
 //  Es importante colocar el modelo que se esta usando en este caso Trainer
 use App\Trainer;
-
 use Illuminate\Http\Request;
+use Iluminate\Support\Facades\Storage;
 
-
+// Se debe incluir el request que creamos 
+use App\Http\Requests\StoreTrainerPost;
 
 class TrainerController extends Controller
 {
@@ -43,8 +44,17 @@ class TrainerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    //  El Request se sustituira por el nuevo request que creamos: StoreTrainerRequest
+    public function store(StoreTrainerPost $request)
     {
+        // Con esto se hacen las validaciones, pero usaremos un método con los form request
+        // $validatedData = $request->validate([
+        //     'name' => 'required|max: 10',
+        //     'description' => 'required|max: 50',
+        //     'avatar' => 'required|image',
+        // ]);
+
         // Vamos a usar un método all() para guardar la información que se envie de los formularios
         // Y con esto nos devolvera el name y el token en un arreglo
         // return $request->all();
@@ -53,7 +63,8 @@ class TrainerController extends Controller
         // return $request->input('name');
 
         // Con esto tendremos una instancia en nuestro modelo Trainer y podremos almacenar los datos
-     
+        $trainer = new Trainer();
+
         if($request->hasFile('avatar')){
 
             $file = $request->file('avatar');
@@ -61,9 +72,10 @@ class TrainerController extends Controller
             $file->move(public_path().'/images/',$name);
     
         }
-        $trainer = new Trainer();
+       
         $trainer->name = $request->input('name');
-        $trainer->slug = $request->input('name');
+        $trainer->slug = ($request->input('name')).time();
+        // $trainer->slug = $request->input('name');
         $trainer->description = $request->input('description');
         $trainer->avatar = $name;
         $trainer->save();
@@ -122,7 +134,8 @@ class TrainerController extends Controller
         // except me dice que va a usar todo menos lo que tiene en los parentesis.
         // $trainer->fill($request->all());
         $trainer->fill($request->except('avatar'));
-        $trainer->slug = $request->input('name');
+        $trainer->slug = ($request->input('name')).time();
+        // $trainer->slug = $request->input('name');
         if($request->hasFile('avatar')){
 
             $file = $request->file('avatar');

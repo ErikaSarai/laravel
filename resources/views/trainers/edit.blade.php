@@ -30,7 +30,6 @@
     <div class="form-group">
       <label for="">Avatar</label>
       <!-- Y el input NECESITA UN NOMBRE  para IDENTIFICARSE -->
-
       {{-- Esto también es importante para que funcione base64= onchange="encodeImageFileAsURL(this) --}}
 
       <input type="file" value="/images/{{$trainer->avatar}}" name="avatar" onchange="encodeImageFileAsURL(this)" >

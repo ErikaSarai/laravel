@@ -3,6 +3,20 @@
 @section('title', 'Trainers Create')
 
 @section('content')
+{{-- Esto es para verificar que funcione las validaciones, significa que si nuestra variable error existe --}}
+@if ($errors->any())
+
+    <div class="alert alert-danger">
+
+      <ul>
+          @foreach($errors->all() as $error)
+          <li>{{$error}}</li>
+          @endforeach
+      </ul>
+  
+    </div>
+
+@endif
 
 <!-- El form es para darle una acción a nuestro formulario y asi poder crear, guardar, eliminar, etc -->
 <!-- Lleva un método (GET, POST, DELETE, etc) y una acción (ruta) -->
@@ -13,24 +27,9 @@
  
  <!-- MUY IMPORTANTE para ejecutar un formulario, es para dar seguridad al formulario, es obligatorio, sino dara error -->
  @csrf
-    <div class="form-group">
-    <label for="">Nombre</label>
-    <!-- Y el input NECESITA UN NOMBRE  para IDENTIFICARSE -->
-    <input type="text" name="name" class="form-control">
-    </div>
+   {{-- Para incluir sub_view_form debemos escribir esto: --}}
 
-    <div class="form-group">
-      <label for="">Descripción</label>
-      <!-- Y el input NECESITA UN NOMBRE  para IDENTIFICARSE -->
-      <input type="text" name="description" class="form-control">
-      </div>
-
-    <div class="form-group">
-      <label for="">Avatar</label>
-      <!-- Y el input NECESITA UN NOMBRE  para IDENTIFICARSE -->
-      <input type="file" name="avatar">
-
-      </div>
+   @include('trainers.sub_view_form')
 
 
     <button type="submit" class="btn btn-primary">Guardar</button>
