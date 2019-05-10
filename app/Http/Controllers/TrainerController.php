@@ -146,7 +146,7 @@ class TrainerController extends Controller
     
         }
         $trainer->save();
-        return view('trainers.update');
+        return redirect('trainers');
 
         // return $request;
         // return $trainer;    
@@ -158,8 +158,17 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Trainer $trainer)
     {
-        //
+        $file_path = public_path().'/images/'.$trainer->avatar;
+        // return $file_path;
+        // Metodo para eliminar la imagen 
+        \File::delete($file_path);
+        $trainer->delete();
+
+        // Con esto te reenvia directamente a la vista que deseas
+        return redirect('trainers');
     }
 }
+
+

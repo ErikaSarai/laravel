@@ -7,6 +7,7 @@
 <div style="margin-top:30px;" class="text-center">
 <h3>Listado de Trainers</h3>
 <p>Esto no es un listado de trainers, en realidad es un listado de mejores amigos, profesores y familia. Bienvenidos a mi Blog</p>
+<a href="/trainers/create" class="btn btn-primary">Crear</a>
 </div>
 <!-- Esto sirve para ejecutar lo que le controlador esta mandando y colocar en un arreglo todos los registros -->
 <!-- ($trainers as $trainer) Con esto dice que cada trainers que encuentre le ponga trainer -->
