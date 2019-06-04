@@ -27,6 +27,7 @@
 
 @endforeach
 <!--  -->
+
 </div>
 
 <!-- Aqui abajo se coloca un card de bootstrap para colocar el registro -->
